@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bright Future College - Admission Portal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0891b2, #10b981);
+      color: white;
+      padding: 40px 10%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #facc15;
+      transform: scale(1.1);
+    }
+
+    .hero {
+      background: url('https://plus.unsplash.com/premium_photo-1714397546754-3c1ef1be26e9?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=870') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .apply-box {
+      background: white;
+      color: #1e293b;
+      display: inline-block;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .apply-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .apply-box input, .apply-box select {
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      margin: 5px;
+      width: 200px;
+    }
+
+    .apply-box button {
+      background: linear-gradient(135deg, #0891b2, #10b981);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .apply-box button:hover {
+      transform: scale(1.05);
+    }
+
+    section {
+      padding: 60px 10%;
+      text-align: center;
+    }
+
+    .about {
+      background-color: #f1f5f9;
+    }
+
+    .about h3, .courses h3, .highlights h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #0f172a;
+      position: relative;
+      display: inline-block;
+    }
+
+    .courses .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: white;
+      width: 280px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: left;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-content h4 {
+      color: #0891b2;
+      margin-bottom: 10px;
+    }
+
+    .highlights .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .highlight-item {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .highlight-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .chatbot-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: linear-gradient(135deg, #0891b2, #10b981);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .chatbot-btn:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      background-color: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    /* Scroll Animation */
+    .hidden {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+      .hero h2 {
+        font-size: 1.8rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      section {
+        padding: 40px 5%;
+      }
+      .apply-box input, .apply-box select, .apply-box button {
+        width: 100%;
+        margin: 8px 0;
+      }
+      .courses .cards {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hidden">
+    <h1>Bright Future College</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="about.html">About</a>
+      <a href="courses.html">Courses</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero hidden">
+    <h2>Shape Your Future With Bright Future College</h2>
+    <p>Empowering students with quality education and modern learning opportunities.</p>
+
+    <div class="apply-box">
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <select>
+          <option>Select Course</option>
+          <option>BCA</option>
+          <option>BBA</option>
+          <option>BSc IT</option>
+          <option>MCA</option>
+        </select>
+        <button type="submit">Apply Now</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="about hidden" id="about">
+    <h3>About Our College</h3>
+    <p>Bright Future College is a leading institution dedicated to delivering high-quality education across multiple disciplines. Our mission is to foster innovation, leadership, and academic excellence among students. We provide modern infrastructure, experienced faculty, and a nurturing environment to help learners achieve their career goals.</p>
+  </section>
+
+  <section class="courses hidden" id="courses">
+    <h3>Popular Courses</h3>
+    <div class="cards">
+      <div class="card hidden">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7" alt="Course 1">
+        <div class="card-content">
+          <h4>Bachelor of Computer Applications (BCA)</h4>
+          <p>Learn programming, database management, and modern IT skills to build your career in technology.</p>
+        </div>
+      </div>
+      <div class="card hidden">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="Course 2">
+        <div class="card-content">
+          <h4>Bachelor of Business Administration (BBA)</h4>
+          <p>Develop leadership and management skills through case studies, projects, and internships.</p>
+        </div>
+      </div>
+      <div class="card hidden">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29tcHV0ZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=500" alt="Course 3">
+        <div class="card-content">
+          <h4>Master of Computer Applications (MCA)</h4>
+          <p>Advance your IT knowledge with software engineering, AI, and data analytics training.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="highlights hidden">
+    <h3>Our Achievements</h3>
+    <div class="grid">
+      <div class="highlight-item hidden">🏆 Ranked among Top 10 Colleges in the Region</div>
+      <div class="highlight-item hidden">🎓 95% Placement Rate in Leading Companies</div>
+      <div class="highlight-item hidden">🌱 Eco-friendly Campus with Smart Classrooms</div>
+      <div class="highlight-item hidden">🤝 Collaboration with Global Universities</div>
+    </div>
+  </section>
+
+  <button class="chatbot-btn">💬</button>
+
+  <footer class="hidden">
+    <p>© 2025 Bright Future College | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const hiddenElements = document.querySelectorAll('.hidden');
+    hiddenElements.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
